@@ -4,43 +4,46 @@ let inputDuracao = document.getElementById("duracao");
 
 let resultado = document.getElementById("resultado")
 
-function calcular(){
+function calcular() {
     console.log("calculando....")
 
     let adultos = inputAdultos.value;
     let criancas = inputCriancas.value;
     let duracao = inputDuracao.value;
 
-    let qtdTotalCarne =carnePP(duracao) * adultos + (carnePP(duracao) / 2 * criancas);
-    let qtdTotalCerveja =cervejaPP(duracao) * adultos;
-    let qtdTotalBebida =bebidaPP(duracao) * adultos + (bebidaPP(duracao) / 2 * criancas);
+    let qtdTotalCarne = carnePessoa * adultos + (carnePessoa / 2 * criancas);
+    let qtdTotalCerveja = cervejaPessoa * adultos;
+    let qtdTotalBebida = bebidaPessoa * adultos + (bebidaPessoa / 2 * criancas);
 
-    resultado.innerHTML = `<p>${qtdTotalCarne / 1000}kg de carne</p>`
-    resultado.innerHTML +=`<p>${Math.ceil(qtdTotalCerveja/355)} Lata de cerveja</p>`
-    resultado.innerHTML +=`<p>${qtdTotalBebida/1000} L de bebidas</p>`
+    resultado.innerHTML = `<p>${qtdTotalCarne / 1000} kg de carne</p>`
+    resultado.innerHTML += `<p>${Math.ceil(qtdTotalCerveja / 355)} Lata de cerveja</p>`
+    resultado.innerHTML += `<p>${qtdTotalBebida / 1000} L de bebidas</p>`
 
 }
+let carnePessoa = carnePorPessoa(duracao);
+let cervejaPessoa = cervejaPorPessoa(duracao);
+let bebidaPessoa = bebidaPorPessoa(duracao);
 
-function carnePP(duracao){
+function carnePorPessoa(duracao) {
     if (duracao >= 6) {
         return 650;
-    }else {
+    } else {
         return 400;
     }
 }
 
-function cervejaPP(duracao){
+function cervejaPorPessoa(duracao) {
     if (duracao >= 6) {
         return 2000;
-    }else {
+    } else {
         return 1200;
     }
 }
 
-function bebidaPP(duracao){
+function bebidaPorPessoa(duracao) {
     if (duracao >= 6) {
         return 1500;
-    }else {
+    } else {
         return 1000;
     }
 }
